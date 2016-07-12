@@ -39,7 +39,7 @@ public class NotificationInitSampleHelper extends IMNotification{
 			//imKit.setResId(R.drawable.aliwx_notification_bg);//通知栏icon
 
             //设置是否开启通知提醒
-            imKit.setEnableNotification(true);
+            imKit.setEnableNotification(false);
 
             mNeedSound = (DemoSimpleKVStore.getNeedSound() == 1);
             mNeedVibrator = (DemoSimpleKVStore.getNeedVibration() == 1);

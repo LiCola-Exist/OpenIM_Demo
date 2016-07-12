@@ -2,13 +2,14 @@ package com.taobao.openimui.imcore;
 
 import com.alibaba.mobileim.YWAPI;
 import com.alibaba.mobileim.YWIMCore;
+import com.taobao.openimui.sample.LoginSampleHelper;
 
 /**
  * Created by mayongge on 15/12/17.
  */
 public class InitSample {
-    public static String USER_ID = ""; //登录id
-    public static String APP_KEY = ""; //登录用户appKey
+    public static String USER_ID = "testpro30"; //登录id
+    public static String APP_KEY = "23015524"; //登录用户appKey
     private static InitSample  sInstance = new InitSample();
 
     private YWIMCore mIMCore;
@@ -18,7 +19,14 @@ public class InitSample {
     }
 
     public YWIMCore getIMCore(){
+        if (mIMCore==null){
+            initIMSDK();
+        }
         return mIMCore;
+    }
+
+    public YWIMCore getIMCoreFromIMKit(){
+        return LoginSampleHelper.getInstance().getIMKit().getIMCore();
     }
 
     public void initIMSDK(){

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/img_head"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentLeft="true"
+        android:src="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/img_head"
+        android:layout_toRightOf="@+id/img_head"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        android:paddingRight="10dp"
+        tool:text="user name" />
+
+    <TextView
+        android:id="@+id/tv_user_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/tv_user_name"
+        android:layout_toRightOf="@+id/tv_user_name"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+
+        tool:text="user id" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/img_head"
+        android:layout_toRightOf="@+id/img_head">
+
+        <TextView
+            android:id="@+id/tv_last_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            tool:text="last message" />
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="14sp"
+            tool:text="time" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -191,4 +191,5 @@
     <dimen name="ls_detail_tag_size">12dp</dimen>
     <dimen name="ls_chat_group_width_minus">85dp</dimen>
     <dimen name="ls_BANNER_HEIGHT_IN_DP">150dp</dimen>
+    <dimen name="text_margin">16dp</dimen>
 </resources>

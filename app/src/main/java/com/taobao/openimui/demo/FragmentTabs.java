@@ -15,7 +15,6 @@ import android.widget.TabHost;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.alibaba.mobileim.YWIMCore;
 import com.alibaba.mobileim.YWIMKit;
 import com.alibaba.mobileim.channel.util.WxLog;
 import com.alibaba.mobileim.channel.util.YWLog;
@@ -28,16 +27,17 @@ import com.alibaba.mobileim.conversation.YWConversationType;
 import com.alibaba.mobileim.conversation.YWMessage;
 import com.alibaba.mobileim.conversation.YWMessageChannel;
 import com.alibaba.mobileim.conversation.YWMessageType;
-import com.alibaba.mobileim.conversation.YWPushInfo;
 import com.alibaba.mobileim.gingko.model.tribe.YWTribe;
 import com.alibaba.mobileim.gingko.model.tribe.YWTribeMember;
 import com.alibaba.mobileim.gingko.presenter.tribe.IYWTribeChangeListener;
 import com.alibaba.mobileim.login.IYWConnectionListener;
 import com.alibaba.mobileim.login.YWLoginCode;
 import com.alibaba.mobileim.login.YWLoginState;
-import com.alibaba.mobileim.tribe.IYWTribeService;
 import com.alibaba.openIMUIDemo.LoginActivity;
 import com.alibaba.openIMUIDemo.R;
+import com.taobao.openimui.Add.AddFragment;
+import com.taobao.openimui.Add.Utils.Logger;
+import com.taobao.openimui.Add.dummy.DummyContent;
 import com.taobao.openimui.common.Notification;
 import com.taobao.openimui.sample.CustomConversationHelper;
 import com.taobao.openimui.sample.LoginSampleHelper;
@@ -49,7 +49,7 @@ import java.util.Map;
 /**
  * Created by mayongge on 15-9-22.
  */
-public class FragmentTabs extends FragmentActivity {
+public class FragmentTabs extends FragmentActivity  {
 
     public static final String TAG = "FragmentTabs";
     public static final String LOGIN_SUCCESS = "loginSuccess";
@@ -58,6 +58,7 @@ public class FragmentTabs extends FragmentActivity {
     public static final String TAB_CONTACT = "contact";
     public static final String TAB_TRIBE = "tribe";
     public static final String TAB_MORE = "more";
+    public static final String TAB_ADD = "add";
 
     private TextView mMessageTab;
     private TextView mContactTab;
@@ -112,6 +113,9 @@ public class FragmentTabs extends FragmentActivity {
 
         indicator = getIndicatorView(TAB_MORE);
         mTabHost.addTab(mTabHost.newTabSpec(TAB_MORE).setIndicator(indicator), MoreFragment.class, null);
+
+        indicator=getIndicatorView(TAB_ADD);
+        mTabHost.addTab(mTabHost.newTabSpec(TAB_ADD).setIndicator(indicator), AddFragment.class,null);
 
         mUnread = (TextView) findViewById(R.id.unread);
 
@@ -218,7 +222,16 @@ public class FragmentTabs extends FragmentActivity {
                     drawable.getIntrinsicHeight());
             indicator.setCompoundDrawables(null, drawable, null, null);
             mMoreTab = indicator;
+        } else if (tab.equals(TAB_ADD)){
+            indicator.setText("新增");
+            drawable = getResources().getDrawable(R.drawable.demo_tab_icon_setting_normal);
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(),
+                    drawable.getIntrinsicHeight());
+            indicator.setCompoundDrawables(null, drawable, null, null);
+            mMoreTab = indicator;
         }
+
+
         return tabView;
     }
 

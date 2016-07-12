@@ -60,5 +60,6 @@
     <string name="demo_copy">复制</string>
     <string name="title_activity_choose_picture">ChoosePictureActivity</string>
     <string name="title_activity_preview_image">PreviewImageActivity</string>
+    <string name="title_activity_imcore_chatting">IMCoreChattingActivity</string>
 
 </resources>

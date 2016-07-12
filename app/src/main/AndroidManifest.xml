@@ -5,7 +5,10 @@
     android:versionCode="1"
     android:versionName="1.0">
 
-    <uses-sdk android:minSdkVersion="14" tools:overrideLibrary="com.taobao.taorecorder,com.taobao.taorecorde_sdk"/>
+    <uses-sdk
+        android:minSdkVersion="14"
+        tools:overrideLibrary="com.taobao.taorecorder,com.taobao.taorecorde_sdk" />
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -74,13 +77,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name="com.taobao.openimui.demo.FragmentTabs"
             android:configChanges="keyboardHidden|orientation"
             android:launchMode="singleTask"
-            android:theme="@style/MainActivityTheme"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/MainActivityTheme" />
         <activity
             android:name="com.taobao.openimui.common.SimpleWebViewActivity"
             android:configChanges="keyboardHidden|orientation"
@@ -89,8 +91,8 @@
         <activity
             android:name="com.taobao.openimui.sample.ChattingFragmentSample"
             android:configChanges="keyboardHidden|orientation"
-            android:windowSoftInputMode="stateHidden|adjustResize"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name="com.taobao.openimui.sample.ExpandableContactsActivitySample"
             android:configChanges="keyboardHidden|orientation"
@@ -123,30 +125,29 @@
         <activity android:name="com.taobao.openimui.test.TestActivity2" />
         <activity
             android:name="com.taobao.openimui.tribe.TribeMembersActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.tribe.TribeInfoActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.tribe.SearchTribeActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.tribe.EditTribeInfoActivity"
+            android:screenOrientation="portrait"
             android:theme="@style/Aliwx_ContentOverlay_default"
-            android:windowSoftInputMode="stateHidden"
-            android:screenOrientation="portrait"/>
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name="com.taobao.openimui.tribe.InviteTribeMemberActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.tribe.TribeSystemMessageActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.contact.ContactSystemMessageActivity"
             android:theme="@style/Aliwx_ContentOverlay_default" />
@@ -159,27 +160,29 @@
             android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.sample.SelectContactToSendCardActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.tribe.TribePersonalSettingActivity"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.sample.ContactSettingActivity"
             android:label="@string/title_activity_contact_setting"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
         <activity
             android:name="com.taobao.openimui.sample.TribeMsgRecTypeSetActivity"
             android:label="@string/title_activity_tribe_msg_rec_type_set"
-            android:theme="@style/Aliwx_ContentOverlay_default"
-            android:screenOrientation="portrait"/>
-
-        <activity android:name="com.taobao.openimui.privateimage.PreviewImageActivity"/>
-
-        <activity android:name="com.taobao.openimui.privateimage.PictureActivity"
-                  android:theme="@style/Aliwx_Theme.Translucent" />
+            android:screenOrientation="portrait"
+            android:theme="@style/Aliwx_ContentOverlay_default" />
+        <activity android:name="com.taobao.openimui.privateimage.PreviewImageActivity" />
+        <activity
+            android:name="com.taobao.openimui.privateimage.PictureActivity"
+            android:theme="@style/Aliwx_Theme.Translucent" />
+        <activity
+            android:name="com.taobao.openimui.Add.IMCoreChattingActivity"
+            android:label="@string/title_activity_imcore_chatting"></activity>
     </application>
 
 </manifest>
