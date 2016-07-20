@@ -388,7 +388,6 @@ public class FragmentTabs extends FragmentActivity  {
             public void onDisconnect(int code, String info) {
                 if (code == YWLoginCode.LOGON_FAIL_KICKOFF) {
                     //在其它终端登录，当前用户被踢下线
-                    
                     Toast.makeText(DemoApplication.getContext(), "被踢下线", Toast.LENGTH_LONG).show();
                     YWLog.i("LoginSampleHelper", "被踢下线");
                     LoginSampleHelper.getInstance().setAutoLoginState(YWLoginState.idle);

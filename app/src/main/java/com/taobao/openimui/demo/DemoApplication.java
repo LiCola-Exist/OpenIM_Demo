@@ -1,21 +1,16 @@
 package com.taobao.openimui.demo;
 
-import android.app.Application;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 import android.util.Log;
-//import android.support.multidex.MultiDexApplication;
 
-import com.alibaba.mobileim.FeedbackAPI;
-import com.alibaba.mobileim.YWAPI;
 import com.alibaba.sdk.android.AlibabaSDK;
 import com.alibaba.sdk.android.callback.InitResultCallback;
 import com.alibaba.sdk.android.media.MediaService;
 import com.alibaba.wxlib.util.SysUtil;
 import com.taobao.openimui.sample.InitHelper;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+//import android.support.multidex.MultiDexApplication;
 
 public class DemoApplication extends MultiDexApplication {
 
