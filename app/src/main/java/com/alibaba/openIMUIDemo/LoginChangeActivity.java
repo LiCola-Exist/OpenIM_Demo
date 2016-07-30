@@ -72,13 +72,13 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 
-public class LoginActivity extends Activity {
+public class LoginChangeActivity extends Activity {
 	
 	private static final int GUEST = 1;
     private static final String USER_ID = "userId";
     private static final String PASSWORD = "password";
     private static final String APPKEY = "appkey";
-    private static final String TAG = LoginActivity.class.getSimpleName();
+    private static final String TAG = LoginChangeActivity.class.getSimpleName();
     private LoginSampleHelper loginHelper;
     private EditText userIdView;
     private EditText passwordView;
@@ -166,7 +166,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 //判断当前网络状态，若当前无网络则提示用户无网络
                 if (YWChannel.getInstance().getNetWorkState().isNetWorkNull()) {
-                    Toast.makeText(LoginActivity.this, "网络已断开，请稍后再试哦~", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginChangeActivity.this, "网络已断开，请稍后再试哦~", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 loginButton.setClickable(false);
@@ -174,12 +174,12 @@ public class LoginActivity extends Activity {
                 final Editable password = passwordView.getText();
                 final Editable appKey = appKeyView.getText();
 //                if (userId == null || userId.toString().length() == 0) {
-//                    Toast.makeText(LoginActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginChangeActivity.this, "用户名不能为空", Toast.LENGTH_SHORT).show();
 //                    loginButton.setClickable(true);
 //                    return;
 //                }
 //                if (password == null || password.toString().length() == 0) {
-//                    Toast.makeText(LoginActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(LoginChangeActivity.this, "密码不能为空", Toast.LENGTH_SHORT).show();
 //                    loginButton.setClickable(true);
 //                    return;
 //                }
@@ -202,16 +202,16 @@ public class LoginActivity extends Activity {
 
                         loginButton.setClickable(true);
                         progressBar.setVisibility(View.GONE);
-                        Toast.makeText(LoginActivity.this, "登录成功",
+                        Toast.makeText(LoginChangeActivity.this, "登录成功",
                                 Toast.LENGTH_SHORT).show();
                         YWLog.i(TAG, "login success!");
-                        Intent intent = new Intent(LoginActivity.this, FragmentTabs.class);
+                        Intent intent = new Intent(LoginChangeActivity.this, FragmentTabs.class);
                         intent.putExtra(FragmentTabs.LOGIN_SUCCESS, "loginSuccess");
-                        LoginActivity.this.startActivity(intent);
-                        LoginActivity.this.finish();
+                        LoginChangeActivity.this.startActivity(intent);
+                        LoginChangeActivity.this.finish();
 //						YWIMKit mKit = LoginSampleHelper.getInstance().getIMKit();
 //						EServiceContact contact = new EServiceContact("qn店铺测试账号001:找鱼");
-//						LoginActivity.this.startActivity(mKit.getChattingActivityIntent(contact));
+//						LoginChangeActivity.this.startActivity(mKit.getChattingActivityIntent(contact));
 //                        mockConversationForDemo();
                     }
 
@@ -228,7 +228,7 @@ public class LoginActivity extends Activity {
                         } else {
                             loginButton.setClickable(true);
                             YWLog.w(TAG, "登录失败，错误码：" + errorCode + "  错误信息：" + errorMessage);
-                            Notification.showToastMsg(LoginActivity.this, errorMessage);
+                            Notification.showToastMsg(LoginChangeActivity.this, errorMessage);
                         }
                     }
                 });
@@ -266,7 +266,7 @@ public class LoginActivity extends Activity {
                                     @Override
                                     public void run() {
                                         int count = (Integer) result[0];
-                                        Toast toast = Toast.makeText(LoginActivity.this, "未读数：" + count, Toast.LENGTH_SHORT);
+                                        Toast toast = Toast.makeText(LoginChangeActivity.this, "未读数：" + count, Toast.LENGTH_SHORT);
                                         toast.show();
                                     }
                                 });
@@ -289,7 +289,7 @@ public class LoginActivity extends Activity {
         });
 
 
-        annoyloginButton.setOnClickListener(new View.OnClickListener() {
+        annoyloginButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 loginHelper.loginOut_Sample();
@@ -318,9 +318,9 @@ public class LoginActivity extends Activity {
      * @param password
      */
     private void saveLoginInfoToLocal(String userId, String password, String appkey) {
-        IMPrefsTools.setStringPrefs(LoginActivity.this, USER_ID, userId);
-        IMPrefsTools.setStringPrefs(LoginActivity.this, PASSWORD, password);
-        IMPrefsTools.setStringPrefs(LoginActivity.this, APPKEY, appkey);
+        IMPrefsTools.setStringPrefs(LoginChangeActivity.this, USER_ID, userId);
+        IMPrefsTools.setStringPrefs(LoginChangeActivity.this, PASSWORD, password);
+        IMPrefsTools.setStringPrefs(LoginChangeActivity.this, APPKEY, appkey);
     }
 
     @Override
@@ -372,12 +372,12 @@ public class LoginActivity extends Activity {
                 saveLoginInfoToLocal(guestId, "taobao1234", "23015524");
                 loginButton.setClickable(true);
                 progressBar.setVisibility(View.GONE);
-                Toast.makeText(LoginActivity.this, "登录成功",
+                Toast.makeText(LoginChangeActivity.this, "登录成功",
                         Toast.LENGTH_SHORT).show();
 //                mockConversationForDemo();
-                Intent intent = new Intent(LoginActivity.this, FragmentTabs.class);
-                LoginActivity.this.startActivity(intent);
-                LoginActivity.this.finish();
+                Intent intent = new Intent(LoginChangeActivity.this, FragmentTabs.class);
+                LoginChangeActivity.this.startActivity(intent);
+                LoginChangeActivity.this.finish();
             }
 
             @Override
@@ -395,7 +395,7 @@ public class LoginActivity extends Activity {
                 } else {
                     loginButton.setClickable(true);
                     YWLog.w(TAG, "登录失败 错误码：" + errorCode + "  错误信息：" + errorMessage);
-                    Toast.makeText(LoginActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginChangeActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -464,9 +464,9 @@ public class LoginActivity extends Activity {
         }else if (loginState == YWLoginState.success.getValue()){
             loginButton.setClickable(true);
             progressBar.setVisibility(View.GONE);
-            Intent intent = new Intent(LoginActivity.this, FragmentTabs.class);
-            LoginActivity.this.startActivity(intent);
-            LoginActivity.this.finish();
+            Intent intent = new Intent(LoginChangeActivity.this, FragmentTabs.class);
+            LoginChangeActivity.this.startActivity(intent);
+            LoginChangeActivity.this.finish();
         } else {
 //            这里需要注释掉，否则无法实现多账号登陆
 //            YWIMKit ywimKit = LoginSampleHelper.getInstance().getIMKit();
@@ -474,9 +474,9 @@ public class LoginActivity extends Activity {
 //                if (ywimKit.getIMCore().getLoginState() == YWLoginState.success) {
 //                    loginButton.setClickable(true);
 //                    progressBar.setVisibility(View.GONE);
-//                    Intent intent = new Intent(LoginActivity.this, FragmentTabs.class);
-//                    LoginActivity.this.startActivity(intent);
-//                    LoginActivity.this.finish();
+//                    Intent intent = new Intent(LoginChangeActivity.this, FragmentTabs.class);
+//                    LoginChangeActivity.this.startActivity(intent);
+//                    LoginChangeActivity.this.finish();
 //                    return;
 //                }
 //            }
@@ -526,8 +526,8 @@ public class LoginActivity extends Activity {
 
                                     EnvManager.getInstance().resetEnvType(DemoApplication.getContext(), tcmsEnvType);
                                     YWEnvManager.prepare(DemoApplication.getContext(), envType);
-                                    IMNotificationUtils.showToast("切换环境，程序退出，请再次启动", LoginActivity.this);
-                                    ServiceChooseHelper.exitService(LoginActivity.this);//xianzhen: service must restart too.
+                                    IMNotificationUtils.showToast("切换环境，程序退出，请再次启动", LoginChangeActivity.this);
+                                    ServiceChooseHelper.exitService(LoginChangeActivity.this);//xianzhen: service must restart too.
 
                                     AccountInfoTools.saveAnnoyAccount("", "");
 
@@ -659,7 +659,7 @@ public class LoginActivity extends Activity {
             Intent intent = FeedbackAPI.getFeedbackActivityIntent();
             if(intent!=null) {
                 startActivity(intent);
-                LoginActivity.this.finish();
+                LoginChangeActivity.this.finish();
             }
         }
         @Override
@@ -668,7 +668,7 @@ public class LoginActivity extends Activity {
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT);
+                    Toast.makeText(LoginChangeActivity.this,"登录失败",Toast.LENGTH_SHORT);
                     finish();
                 }
             });
@@ -681,14 +681,14 @@ public class LoginActivity extends Activity {
 
     private void initLoginInfo(){
         //读取登录成功后保存的用户名、密码和appkey
-        String localId = IMPrefsTools.getStringPrefs(LoginActivity.this, USER_ID, "");
+        String localId = IMPrefsTools.getStringPrefs(LoginChangeActivity.this, USER_ID, "");
         if (!TextUtils.isEmpty(localId)) {
             userIdView.setText(localId);
-            String localPassword = IMPrefsTools.getStringPrefs(LoginActivity.this, PASSWORD, "");
+            String localPassword = IMPrefsTools.getStringPrefs(LoginChangeActivity.this, PASSWORD, "");
             if (!TextUtils.isEmpty(localPassword)) {
                 passwordView.setText(localPassword);
             }
-            String localAppKey = IMPrefsTools.getStringPrefs(LoginActivity.this, APPKEY, "");
+            String localAppKey = IMPrefsTools.getStringPrefs(LoginChangeActivity.this, APPKEY, "");
             if (!TextUtils.isEmpty(localAppKey)){
                 appKeyView.setText(localAppKey);
             }

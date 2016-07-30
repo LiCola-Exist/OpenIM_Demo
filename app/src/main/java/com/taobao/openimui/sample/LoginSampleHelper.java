@@ -29,7 +29,7 @@ import com.alibaba.mobileim.login.YWLoginState;
 import com.alibaba.mobileim.login.YWPwdType;
 import com.alibaba.mobileim.ui.chat.widget.YWSmilyMgr;
 import com.alibaba.mobileim.utility.IMAutoLoginInfoStoreUtil;
-import com.alibaba.openIMUIDemo.LoginActivity;
+import com.alibaba.openIMUIDemo.LoginChangeActivity;
 import com.alibaba.tcms.env.EnvManager;
 import com.alibaba.tcms.env.TcmsEnvType;
 import com.alibaba.tcms.env.YWEnvManager;
@@ -60,7 +60,7 @@ public class LoginSampleHelper {
     }
 
     // 应用APPKEY，这个APPKEY是申请应用时获取的
-    public static  String APP_KEY = "23015524";
+    public static String APP_KEY = "23015524";
 
     //以下两个内容是测试环境使用，开发无需关注
 //    public static final String APP_KEY_TEST = "4272";  //60026702
@@ -112,21 +112,20 @@ public class LoginSampleHelper {
         mApp = context;
         sEnvType = YWEnvManager.getEnv(context);
         //初始化IMKit
-		final String userId = IMAutoLoginInfoStoreUtil.getLoginUserId();
-		final String appkey = IMAutoLoginInfoStoreUtil.getAppkey();
+        final String userId = IMAutoLoginInfoStoreUtil.getLoginUserId();
+        final String appkey = IMAutoLoginInfoStoreUtil.getAppkey();
         TcmsEnvType type = EnvManager.getInstance().getCurrentEnvType(mApp);
-        if(type==TcmsEnvType.ONLINE || type == TcmsEnvType.PRE){
-            if(TextUtils.isEmpty(appkey)) {
+        if (type == TcmsEnvType.ONLINE || type == TcmsEnvType.PRE) {
+            if (TextUtils.isEmpty(appkey)) {
                 YWAPI.init(mApp, APP_KEY);
             } else {
                 YWAPI.init(mApp, appkey);
             }
-        }
-        else if(type==TcmsEnvType.TEST){
+        } else if (type == TcmsEnvType.TEST) {
             YWAPI.init(mApp, APP_KEY_TEST);
         }
-
-        if (!TextUtils.isEmpty(userId) && !TextUtils.isEmpty(appkey)){
+        //如果取不到 延伸到登录中 初始化
+        if (!TextUtils.isEmpty(userId) && !TextUtils.isEmpty(appkey)) {
             LoginSampleHelper.getInstance().initIMKit(userId, appkey);
         }
 
@@ -154,7 +153,7 @@ public class LoginSampleHelper {
 
     //将自动登录的状态广播出去
     private void sendAutoLoginState(YWLoginState loginState) {
-        Intent intent = new Intent(LoginActivity.AUTO_LOGIN_STATE_ACTION);
+        Intent intent = new Intent(LoginChangeActivity.AUTO_LOGIN_STATE_ACTION);
         intent.putExtra("state", loginState.getValue());
         LocalBroadcastManager.getInstance(YWChannel.getApplication()).sendBroadcast(intent);
     }
@@ -192,7 +191,7 @@ public class LoginSampleHelper {
     /**
      * 添加新消息到达监听，该监听应该在登录之前调用以保证登录后可以及时收到消息
      */
-    private void addPushMessageListener(){
+    private void addPushMessageListener() {
         if (mIMKit == null) {
             return;
         }
@@ -215,26 +214,26 @@ public class LoginSampleHelper {
      * 联系人相关操作通知回调，SDK使用方可以实现此接口来接收联系人操作通知的监听
      * 所有方法都在UI线程调用
      * SDK会自动处理这些事件，一般情况下，用户不需要监听这个事件
-     * @author shuheng
      *
+     * @author shuheng
      */
-    private void addContactListeners(){
+    private void addContactListeners() {
         //添加联系人通知和更新监听，先删除再添加，以免多次添加该监听
         removeContactListeners();
-        if(mIMKit!=null){
-            if(mContactOperateNotifyListener!=null)
+        if (mIMKit != null) {
+            if (mContactOperateNotifyListener != null)
                 mIMKit.getContactService().addContactOperateNotifyListener(mContactOperateNotifyListener);
-            if(mContactCacheUpdateListener!=null)
+            if (mContactCacheUpdateListener != null)
                 mIMKit.getContactService().addContactCacheUpdateListener(mContactCacheUpdateListener);
 
         }
     }
 
-    private void removeContactListeners(){
-        if(mIMKit!=null){
-            if(mContactOperateNotifyListener!=null)
+    private void removeContactListeners() {
+        if (mIMKit != null) {
+            if (mContactOperateNotifyListener != null)
                 mIMKit.getContactService().removeContactOperateNotifyListener(mContactOperateNotifyListener);
-            if(mContactCacheUpdateListener!=null)
+            if (mContactCacheUpdateListener != null)
                 mIMKit.getContactService().removeContactCacheUpdateListener(mContactCacheUpdateListener);
 
         }
@@ -243,25 +242,25 @@ public class LoginSampleHelper {
     private IYWP2PPushListener mP2PListener = new IYWP2PPushListener() {
         @Override
         public void onPushMessage(IYWContact contact, YWMessage message) {
-            if (message.getSubType() == YWMessage.SUB_MSG_TYPE.IM_P2P_CUS){
+            if (message.getSubType() == YWMessage.SUB_MSG_TYPE.IM_P2P_CUS) {
                 if (message.getMessageBody() instanceof YWCustomMessageBody) {
                     YWCustomMessageBody messageBody = (YWCustomMessageBody) message.getMessageBody();
                     if (messageBody.getTransparentFlag() == 1) {
                         String content = messageBody.getContent();
                         try {
                             JSONObject object = new JSONObject(content);
-                            if (object.has("text")){
+                            if (object.has("text")) {
                                 String text = object.getString("text");
                                 Notification.showToastMsgLong(DemoApplication.getContext(), "透传消息，content = " + text);
-                            } else if (object.has("customizeMessageType")){
+                            } else if (object.has("customizeMessageType")) {
                                 String customType = object.getString("customizeMessageType");
-                                if (!TextUtils.isEmpty(customType) && customType.equals(ChattingOperationCustomSample.CustomMessageType.READ_STATUS)){
+                                if (!TextUtils.isEmpty(customType) && customType.equals(ChattingOperationCustomSample.CustomMessageType.READ_STATUS)) {
                                     YWConversation conversation = mIMKit.getConversationService().getConversationByConversationId(message.getConversationId());
                                     long msgId = Long.parseLong(object.getString("PrivateImageRecvReadMessageId"));
                                     conversation.updateMessageReadStatus(conversation, msgId);
                                 }
                             }
-                        } catch (JSONException e){
+                        } catch (JSONException e) {
                         }
                     }
                 }

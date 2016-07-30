@@ -33,11 +33,9 @@ import com.alibaba.mobileim.gingko.presenter.tribe.IYWTribeChangeListener;
 import com.alibaba.mobileim.login.IYWConnectionListener;
 import com.alibaba.mobileim.login.YWLoginCode;
 import com.alibaba.mobileim.login.YWLoginState;
-import com.alibaba.openIMUIDemo.LoginActivity;
+import com.alibaba.openIMUIDemo.LoginChangeActivity;
 import com.alibaba.openIMUIDemo.R;
 import com.taobao.openimui.Add.AddFragment;
-import com.taobao.openimui.Add.Utils.Logger;
-import com.taobao.openimui.Add.dummy.DummyContent;
 import com.taobao.openimui.common.Notification;
 import com.taobao.openimui.sample.CustomConversationHelper;
 import com.taobao.openimui.sample.LoginSampleHelper;
@@ -392,7 +390,7 @@ public class FragmentTabs extends FragmentActivity  {
                     YWLog.i("LoginSampleHelper", "被踢下线");
                     LoginSampleHelper.getInstance().setAutoLoginState(YWLoginState.idle);
                     finish();
-                    Intent intent = new Intent(DemoApplication.getContext(), LoginActivity.class);
+                    Intent intent = new Intent(DemoApplication.getContext(), LoginChangeActivity.class);
                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     DemoApplication.getContext().startActivity(intent);
                 }

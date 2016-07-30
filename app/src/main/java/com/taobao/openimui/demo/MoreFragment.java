@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.alibaba.mobileim.FeedbackAPI;
 import com.alibaba.mobileim.IYWLoginService;
-import com.alibaba.mobileim.YWAPI;
 import com.alibaba.mobileim.YWIMKit;
 import com.alibaba.mobileim.channel.event.IWxCallback;
 import com.alibaba.mobileim.channel.util.WxLog;
@@ -34,7 +33,7 @@ import com.alibaba.mobileim.conversation.YWMessage;
 import com.alibaba.mobileim.fundamental.widget.YWAlertDialog;
 import com.alibaba.mobileim.login.YWLoginState;
 import com.alibaba.mobileim.utils.IYWCacheService;
-import com.alibaba.openIMUIDemo.LoginActivity;
+import com.alibaba.openIMUIDemo.LoginChangeActivity;
 import com.alibaba.openIMUIDemo.R;
 import com.taobao.openimui.common.Notification;
 import com.taobao.openimui.common.SimpleWebViewActivity;
@@ -370,7 +369,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener {
                 YWLog.i(TAG, "退出成功");
                 LoginSampleHelper.getInstance().setAutoLoginState(YWLoginState.idle);
                 getActivity().finish();
-                Intent intent = new Intent(DemoApplication.getContext(), LoginActivity.class);
+                Intent intent = new Intent(DemoApplication.getContext(), LoginChangeActivity.class);
                 startActivity(intent);
             }
 

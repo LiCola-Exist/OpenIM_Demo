@@ -15,17 +15,15 @@ import android.widget.Toast;
 
 import com.alibaba.mobileim.IYWLoginService;
 import com.alibaba.mobileim.YWAPI;
-import com.alibaba.mobileim.YWConstants;
 import com.alibaba.mobileim.YWIMKit;
 import com.alibaba.mobileim.channel.event.IWxCallback;
 import com.alibaba.mobileim.channel.util.YWLog;
-import com.alibaba.mobileim.contact.YWContactFactory;
 import com.alibaba.mobileim.conversation.EServiceContact;
 import com.alibaba.mobileim.fundamental.widget.YWAlertDialog;
 import com.alibaba.mobileim.login.YWLoginState;
 import com.alibaba.mobileim.ui.thridapp.ParamConstant;
 import com.alibaba.mobileim.utility.YWTrackUtil;
-import com.alibaba.openIMUIDemo.LoginActivity;
+import com.alibaba.openIMUIDemo.LoginChangeActivity;
 import com.alibaba.openIMUIDemo.R;
 import com.taobao.openimui.demo.DemoApplication;
 import com.taobao.openimui.sample.LoginSampleHelper;
@@ -78,7 +76,7 @@ public class MultiAccountTestActivity extends Activity{
             @Override
             public void onClick(View v) {
                 LoginSampleHelper.getInstance().setAutoLoginState(YWLoginState.idle);
-                Intent intent1 = new Intent(MultiAccountTestActivity.this, LoginActivity.class);
+                Intent intent1 = new Intent(MultiAccountTestActivity.this, LoginChangeActivity.class);
                 startActivity(intent1);
             }
         });
@@ -157,7 +155,7 @@ public class MultiAccountTestActivity extends Activity{
                 if (YWAPI.getLoginAccountList() == null || YWAPI.getLoginAccountList().size() == 0) {
                     finish();
                     LoginSampleHelper.getInstance().setAutoLoginState(YWLoginState.idle);
-                    Intent intent = new Intent(DemoApplication.getContext(), LoginActivity.class);
+                    Intent intent = new Intent(DemoApplication.getContext(), LoginChangeActivity.class);
                     startActivity(intent);
                     return;
                 }
@@ -178,7 +176,7 @@ public class MultiAccountTestActivity extends Activity{
 
         //本来应该放在上面的onSuccess中，但是退出成功之后，所有基于IMBaseActivity的类会被Finish掉，从而导致MainTabActivity被Finish掉，
         //这样就会出现程序先退出、再启动，有明显的间隔，因此把intent放在下面，减少间隔。
-//        Intent intent = new Intent(DemoApplication.getContext(), LoginActivity.class);
+//        Intent intent = new Intent(DemoApplication.getContext(), LoginChangeActivity.class);
 //        startActivity(intent);
 
     }
